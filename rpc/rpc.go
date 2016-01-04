@@ -21,12 +21,17 @@ func Follow(name string, followUserNames []string) (interface{}, error) {
 	resp, err := httpjsonrpc.Call(Address, "follow", id, []interface{}{name, followUserNames})
 	if err != nil {
 		log.Println(err)
-		return resp, err
+		log.Printf("Error: RPC Follow: %+v", resp)
+		return nil, err
 	}
-	result := resp.Result
-	//log.Println(resp)
 
-	return result, err
+	_ = resp.Result
+	if resp.Error != nil {
+		log.Printf("Error: RPC Follow: %+v", resp)
+		return nil, fmt.Errorf("RPC error")
+	}
+
+	return resp, err
 }
 
 func UnFollow(name string, followUserNames []string) (interface{}, error) {
