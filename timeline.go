@@ -233,8 +233,9 @@ func retrieveMagnetInfo(ss string) (string, string, uint64, string, bool) {
 
 func runSyncTimeLine() {
 	for {
-		syncTimeLine()
 		time.Sleep(60 * time.Second)
+		syncTimeLine()
+		
 	}
 }
 
