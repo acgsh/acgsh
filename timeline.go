@@ -55,7 +55,7 @@ func syncTimeLine() {
 	if err != nil{
 		log.Println(err)
 		log.Printf("Error: syncTimeLine GetPosts: %+v\n", gup.data)
-		continue
+		return
 	}
 	log.Println(len(*newPosts), "new posts")
 
