@@ -52,6 +52,11 @@ func syncTimeLine() {
 
 	newPosts, err := rpc.GetPosts(sync_posts_number, gup.data)
 	//log.Printf("%+v\n", presult)
+	if err != nil{
+		log.Println(err)
+		log.Printf("Error: syncTimeLine GetPosts: %+v\n", gup.data)
+		continue
+	}
 	log.Println(len(*newPosts), "new posts")
 
 	// Update publishers sync data with info from retrieved posts.
